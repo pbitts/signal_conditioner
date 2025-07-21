@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signal Conditioner Results</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    .circuit {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .circuit h3 {
+      margin-top: 0;
+      color: #007acc;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 0.9em;
+    }
+    .footer a {
+      color: #007acc;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Signal Conditioning Circuit Results</h1>
+
+  {% if result %}
+    {% for circuit in result %}
+      <div class="circuit">
+        <h3>Circuit #{{ circuit.possibility }}</h3>
+        <p><strong>R1:</strong> {{ circuit.r1 }} Ω</p>
+        <p><strong>R2:</strong> {{ circuit.r2 }} Ω</p>
+        <p><strong>R3:</strong> {{ circuit.r3 }} Ω</p>
+        <p><strong>Max Output Voltage (Vout):</strong> {{ circuit.vout_max }} V</p>
+        <p><strong>Min Output Voltage (Vout):</strong> {{ circuit.vout_min }} V</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No valid circuit found for the provided parameters.</p>
+  {% endif %}
+
+  <div class="footer">
+    Developed by <a href="https://pbitts.github.io/" target="_blank">pbitts</a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signal Conditioner Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      width: 100%;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+    }
+    .footer a {
+      color: #007acc;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Signal Conditioner Calculator</h1>
+
+  <form action="/calculate" method="post">
+    <label for="vin_min">Input Voltage (RMS) - Minimum:</label>
+    <input type="number" step="any" name="vin_min" required>
+
+    <label for="vin_max">Input Voltage (RMS) - Maximum:</label>
+    <input type="number" step="any" name="vin_max" required>
+
+    <label for="vout_min">Desired Output Voltage - Minimum:</label>
+    <input type="number" step="any" name="vout_min" required>
+
+    <label for="vout_max">Desired Output Voltage - Maximum:</label>
+    <input type="number" step="any" name="vout_max" required>
+
+    <label for="iterations">Number of Iterations:</label>
+    <input type="number" name="iterations" min="1000" value="1000" required>
+
+    <button type="submit">Calculate</button>
+  </form>
+
+  <div class="footer">
+    Developed by <a href="https://pbitts.github.io/" target="_blank">pbitts</a>
+  </div>
+
+</body>
+</html>
