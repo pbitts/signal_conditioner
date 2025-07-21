@@ -17,11 +17,7 @@ class Conditioner:
     for resistor in resistors:
       self.commercial_resistors: np.darray = np.concatenate((self.commercial_resistors, np.multiply(unds,resistor)))
     
-    print('Finding best resistors values for conditioning...')
-    print('Output signal desired: ', desired_output_signal, ' v')
-    print('Input signal: ', input_signal_peak, ' v')
     ideal_reqca_value = self.get_reqca_ideal_value(max(desired_output_signal), max(input_signal_peak))
-    print('Ideal REQ CA value: ', ideal_reqca_value)
 
     #Calculates the Vout of the circuit havind random resistors' values from the
     #commercial values list ( self.commercial_resistors)
@@ -49,11 +45,6 @@ class Conditioner:
         if not chosen_circuit in self.chosen_circuits:
           self.chosen_circuits.append(chosen_circuit)
           possibility += 1
-    #After looping throught the number of tries, print all possibilities
-    for circuit in self.chosen_circuits:
-      print(f'\n--------Circuit possibility {circuit["possibility"]}-------------'
-            f'\nChosen resistors:\nr1: {circuit["r1"]} ohms\nr2: {circuit["r2"]} ohms\nr3: {circuit["r3"]} ohms'
-            f'\nFinal Output: {circuit["vout_max"]} volts | {circuit["vout_min"]} volts ')
 
   def get_parallel (self, ra: float, rb: float):
     '''Calculates the parallel equivalent resistor of two resistors'''
@@ -81,6 +72,3 @@ class Conditioner:
     vout[0] = cc_value + ca_value*input_signal_peak[0]
     vout[1] = cc_value + ca_value*input_signal_peak[1]
     return vout
-
-
-Conditioner(desired_output_signal=[5.0,0.0], input_signal_rms = [220.0, -220.0], max_tries=8000)
