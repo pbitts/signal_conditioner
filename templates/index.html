@@ -7,7 +7,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-KVX4PCEB3L');
   </script>
 
@@ -72,21 +71,21 @@
 
   <h1>Signal Conditioner Calculator</h1>
 
-  <form action="/calculate" method="post">
+  <form action="/calculate" method="post" onsubmit="return validateForm()">
     <label for="vin_min">Input Voltage (RMS) - Minimum:</label>
-    <input type="number" step="any" name="vin_min" required>
+    <input type="number" step="any" name="vin_min" id="vin_min" value='-220' required>
 
     <label for="vin_max">Input Voltage (RMS) - Maximum:</label>
-    <input type="number" step="any" name="vin_max" required>
+    <input type="number" step="any" name="vin_max" id="vin_max" value='220' required>
 
     <label for="vout_min">Desired Output Voltage - Minimum:</label>
-    <input type="number" step="any" name="vout_min" required>
+    <input type="number" step="any" name="vout_min" id="vout_min" value='0.0' required>
 
     <label for="vout_max">Desired Output Voltage - Maximum:</label>
-    <input type="number" step="any" name="vout_max" required>
+    <input type="number" step="any" name="vout_max" id="vout_max" value='5.0' required>
 
     <label for="iterations">Number of Iterations:</label>
-    <input type="number" name="iterations" min="1000" value="1000" required>
+    <input type="number" name="iterations" id="iterations" min="1000" max="1000000" value="1000" required>
 
     <button type="submit">Calculate</button>
   </form>
@@ -94,6 +93,27 @@
   <div class="footer">
     Developed by <a href="https://pbitts.github.io/" target="_blank">pbitts</a>
   </div>
+
+  <script>
+    function validateForm() {
+      const vinMin = parseFloat(document.getElementById('vin_min').value);
+      const vinMax = parseFloat(document.getElementById('vin_max').value);
+      const voutMin = parseFloat(document.getElementById('vout_min').value);
+      const voutMax = parseFloat(document.getElementById('vout_max').value);
+
+      if (vinMin >= vinMax) {
+        alert("Input Voltage Minimum must be less than Maximum.");
+        return false;
+      }
+
+      if (voutMin >= voutMax) {
+        alert("Output Voltage Minimum must be less than Maximum.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
 
 </body>
 </html>
